@@ -2,7 +2,7 @@
 
 namespace Magento\Braintree\Model\GooglePay;
 
-use Magento\Braintree\Api\Data\AuthDataInterfaceFactory;
+use Magento\Braintree\Api\Data\AuthDataInterface;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -16,7 +16,7 @@ use Magento\Framework\UrlInterface;
 class Auth
 {
     /**
-     * @var AuthDataInterfaceFactory
+     * @var AuthDataInterface
      */
     private $authData;
 
@@ -38,13 +38,13 @@ class Auth
     /**
      * Auth constructor
      *
-     * @param AuthDataInterfaceFactory $authData
+     * @param AuthDataInterface $authData
      * @param Ui\ConfigProvider $configProvider
      * @param UrlInterface $url
      * @param CustomerSession $customerSession
      */
     public function __construct(
-        AuthDataInterfaceFactory $authData,
+        AuthDataInterface $authData,
         Ui\ConfigProvider $configProvider,
         UrlInterface $url,
         CustomerSession $customerSession

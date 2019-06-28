@@ -4,7 +4,6 @@ namespace Magento\Braintree\Model\ApplePay;
 
 use Magento\Braintree\Api\AuthInterface;
 use Magento\Braintree\Api\Data\AuthDataInterface;
-use Magento\Braintree\Api\Data\AuthDataInterfaceFactory;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -19,7 +18,7 @@ use Magento\Store\Model\StoreManagerInterface;
 class Auth implements AuthInterface
 {
     /**
-     * @var AuthDataInterfaceFactory $authData
+     * @var AuthDataInterface $authData
      */
     private $authData;
 
@@ -46,14 +45,14 @@ class Auth implements AuthInterface
     /**
      * Auth constructor
      *
-     * @param AuthDataInterfaceFactory $authData
+     * @param AuthDataInterface $authData
      * @param Ui\ConfigProvider $configProvider
      * @param UrlInterface $url
      * @param CustomerSession $customerSession
      * @param StoreManagerInterface $storeManagerInterface
      */
     public function __construct(
-        AuthDataInterfaceFactory $authData,
+        AuthDataInterface $authData,
         Ui\ConfigProvider $configProvider,
         UrlInterface $url,
         CustomerSession $customerSession,
@@ -74,7 +73,7 @@ class Auth implements AuthInterface
     public function get(): AuthDataInterface
     {
         /** @var AuthDataInterface $data */
-        $data = $this->authData->create();
+        $data = $this->authData;
         $data->setClientToken($this->getClientToken());
         $data->setDisplayName($this->getDisplayName());
         $data->setActionSuccess($this->getActionSuccess());
